@@ -39,18 +39,22 @@ Compared models using Confusion Matrix, Precision, Recall, and F1-score, since a
 
 ## Model Performance Summary
 
+Results on the held-out test set (56,962 transactions, 98 of them fraud). Precision and recall are for the fraud class.
+
 | Model | Precision | Recall | Interpretation |
 |---|---|---|---|
-| Logistic Regression | High | Moderate | Misses fraud cases |
-| SMOTE + Logistic Regression | Low | High | Catches fraud but too many false alarms |
-| Random Forest | Balanced | Balanced | Best overall performance |
+| Logistic Regression | 0.82 | 0.66 | Misses about a third of fraud cases |
+| SMOTE + Logistic Regression | 0.13 | 0.90 | Catches most fraud, but floods the business with false alarms |
+| **Random Forest** | **0.83** | **0.83** | **Best overall balance** |
+
+![Model comparison](images/model_comparison.png)
 
 ## Final Model - Random Forest
 
 Random Forest gave the best balance overall:
-- **Precision: 0.83**
-- **Recall: 0.83**
-- Low false positives, while still catching most fraud cases
+- **Precision: 0.83** and **Recall: 0.83** (F1: 0.83)
+- Caught **81 of 98** fraud cases in the test set
+- Only **17 false alarms** out of 56,864 genuine transactions
 
 ## Key Insights
 
@@ -66,6 +70,8 @@ The top features driving fraud predictions were:
 - V10
 - V4
 - V12
+
+![Feature importance](images/feature_importance.png)
 
 ## Tools & Technologies
 
@@ -84,4 +90,4 @@ The top features driving fraud predictions were:
 pip install -r requirements.txt
 ```
 3. Download the dataset from the Kaggle link above and place it in the project folder
-4. Open and run the Jupyter notebook
+4. Open and run `financial_fraud_detection.ipynb`
